@@ -1,0 +1,272 @@
+/* =========================================
+   EXHIBITA - FINAL DESIGN SYSTEM
+   Tema: Navy Blue, Soft Pink, Maroon, White
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --primary: #2B4C7E;      /* Biru Navy (Bawaan) */
+  --primary-dark: #1E3A5F;
+  --secondary: #E6A8B6;    /* Pink Soft */
+  --secondary-hover: #D897A6;
+  --maroon: #4A0E17;       /* Maroon Gelap */
+  --maroon-light: #8B1C2D;
+  --maroon-hover: #6B1422;
+  --bg: #FAFAFA;
+  --text: #1F2937;
+  --gray: #6B7280;
+  
+  --green: #16A34A;
+  --yellow: #F59E0B;
+  --red: #DC2626;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* =========================================
+   NAVBAR (BASE STYLE)
+   ========================================= */
+.navbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 40px; 
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #eee;
+}
+
+.navbar .logo { 
+  font-size: 26px; font-weight: 900; color: var(--maroon); 
+  letter-spacing: -0.5px; 
+}
+
+.nav-links { display: flex; gap: 16px; font-weight: 600; }
+.nav-links a { transition: color 0.3s; color: var(--text); }
+.nav-links a:hover { color: var(--maroon); }
+
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-right span { color: var(--maroon); font-weight: 600; font-size: 14px; }
+
+/* Tombol Login & Logout Default */
+.btn-login {
+  background: var(--maroon); color: #fff;
+  padding: 10px 24px; border-radius: 999px;
+  font-weight: 700; border: none; cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 14, 23, 0.2);
+  display: inline-block; text-align: center;
+}
+.btn-login:hover {
+  background: var(--maroon-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 14, 23, 0.3);
+  color: #fff;
+}
+
+/* =========================================
+   LANDING PAGE (TEMA PINK GLASS)
+   ========================================= */
+body.page-landing {
+  background: linear-gradient(135deg, #FAF5F6 0%, #F2E3E6 50%, #E6D3D8 100%) !important;
+}
+
+/* Navbar Transparan khusus Landing Page */
+body.page-landing .navbar {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  position: absolute !important;
+  width: 100%; top: 0; left: 0;
+}
+body.page-landing .navbar .logo,
+body.page-landing .nav-links a { color: #fff !important; }
+body.page-landing .nav-links a:hover { color: var(--secondary) !important; }
+body.page-landing .btn-login {
+  background: var(--secondary) !important; color: var(--maroon) !important;
+}
+
+.hero-fwd {
+  position: relative; min-height: 85vh;
+  display: flex; align-items: center; justify-content: center;
+  background: url('../img/hero.jpg') center/cover no-repeat;
+  padding: 100px 24px;
+}
+.hero-fwd::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
+}
+.hero-container {
+  position: relative; z-index: 10; max-width: 900px; text-align: center; color: #fff;
+}
+.hero-container h1 {
+  font-size: clamp(40px, 6vw, 72px); font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8); margin-bottom: 20px; line-height: 1.1;
+}
+.hero-container p { font-size: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); margin-bottom: 40px; }
+
+/* =========================================
+   TEMA MAHASISWA (NAVBAR MAROON)
+   ========================================= */
+body.page-mahasiswa .navbar { background: var(--maroon) !important; border-bottom: none; }
+body.page-mahasiswa .navbar .logo,
+body.page-mahasiswa .navbar .nav-right span { color: #fff !important; }
+body.page-mahasiswa .nav-links a { color: rgba(255,255,255,0.7) !important; }
+body.page-mahasiswa .nav-links a:hover,
+body.page-mahasiswa .nav-links a.active { color: #fff !important; background: rgba(255,255,255,0.1); border-radius: 999px; }
+body.page-mahasiswa .btn-login { background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); color: #fff; box-shadow: none; }
+
+/* =========================================
+   TEMA PANITIA/ADMIN (NAVBAR KACA MAROON)
+   ========================================= */
+body:not(.page-landing):not(.page-mahasiswa) .nav-links {
+  background: rgba(74, 14, 23, 0.05);
+  padding: 6px; border-radius: 999px; border: 1px solid rgba(74, 14, 23, 0.1);
+}
+body:not(.page-landing):not(.page-mahasiswa) .nav-links a {
+  padding: 8px 20px; border-radius: 999px;
+}
+
+/* =========================================
+   HALAMAN LOGIN / REGISTER (GLASSMORPHISM)
+   ========================================= */
+body.login-body {
+  background: linear-gradient(135deg, #FAF5F6 0%, #E2CDD3 100%) !important;
+  display: flex; align-items: center; justify-content: center; min-height: 100vh;
+}
+.login-wrapper {
+  display: flex; width: 100%; max-width: 900px; min-height: 520px; height: auto;
+  background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px);
+  border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.1); overflow: hidden; margin: 20px;
+}
+.login-image { flex: 1; padding: 20px; }
+.login-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+
+.login-form-box { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+.login-form-box h2 { font-size: 32px; font-weight: 800; margin-bottom: 30px; text-align: center; color: var(--maroon); }
+
+.input-group { margin-bottom: 20px; }
+.input-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--maroon); }
+.input-group input, body.login-body select {
+  width: 100%; background: transparent !important; border: none !important;
+  border-bottom: 2px solid var(--maroon) !important; border-radius: 0 !important;
+  padding: 10px 0 !important; color: var(--maroon) !important; font-size: 16px;
+  box-shadow: none !important; outline: none; transition: border-color 0.3s;
+}
+.input-group input:focus, body.login-body select:focus { border-bottom-color: var(--maroon-hover) !important; }
+.input-group input::placeholder { color: rgba(74, 14, 23, 0.4) !important; }
+
+.btn-glass {
+  width: 100%; padding: 15px; margin-top: 10px; border: none; border-radius: 999px;
+  background: var(--maroon); color: #fff; font-size: 16px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 4px 15px rgba(74, 14, 23, 0.3); transition: 0.3s;
+}
+.btn-glass:hover { background: var(--maroon-hover); transform: translateY(-2px); }
+
+.login-links { display: flex; justify-content: space-between; margin-top: 25px; font-size: 14px; }
+.login-links a { color: var(--maroon) !important; font-weight: 600; }
+.login-links a:hover { color: var(--maroon-hover) !important; text-decoration: underline; }
+
+/* =========================================
+   KOMPONEN HALAMAN UMUM (KATALOG, DLL)
+   ========================================= */
+.page-wrap { max-width: 1200px; margin: 0 auto; padding: 40px 24px; padding-top: 100px; }
+.page-title { font-size: 32px; font-weight: 800; color: var(--maroon); margin-bottom: 8px; }
+.page-subtitle { color: var(--gray); margin-bottom: 32px; }
+
+.toolbar { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+.toolbar input, .toolbar select {
+  padding: 12px 16px; border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 12px; background: rgba(255,255,255,0.6); backdrop-filter: blur(10px);
+  color: var(--maroon); font-family: inherit; font-size: 15px; outline: none;
+}
+.toolbar input:focus, .toolbar select:focus { border-color: var(--maroon); background: #fff; }
+.toolbar input { flex: 1; min-width: 200px; }
+
+/* Card Karya */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+.karya-card {
+  background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(16px);
+  border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px rgba(74, 14, 23, 0.08); overflow: hidden;
+  transition: all 0.3s ease; display: flex; flex-direction: column;
+}
+.karya-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(74, 14, 23, 0.15); }
+.karya-card .thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.karya-card .body { padding: 20px; flex: 1; }
+.karya-card h3 { font-size: 18px; color: var(--maroon); margin-bottom: 6px; }
+.karya-card .meta { font-size: 13px; color: var(--gray); }
+
+/* Badge Status */
+.badge-status {
+  display: inline-block; padding: 5px 12px; border-radius: 999px;
+  font-size: 12px; font-weight: 700; margin-top: 12px;
+}
+.badge-accepted { background: #dcfce7; color: var(--green); }
+.badge-pending { background: #fef3c7; color: var(--yellow); }
+.badge-rejected { background: #fee2e2; color: var(--red); }
+
+/* Tombol Cari & Kembali */
+.btn-primary, .toolbar button {
+  background: var(--maroon); color: #fff; padding: 12px 24px; border-radius: 999px;
+  font-weight: 700; border: none; cursor: pointer; transition: 0.3s;
+}
+.btn-primary:hover, .toolbar button:hover { background: var(--maroon-hover); transform: translateY(-2px); }
+
+/* Dashboard Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+.stat-card { background: #fff; padding: 24px; border-radius: var(--radius); border-left: 4px solid var(--secondary); box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+.stat-card .label { font-size: 14px; font-weight: 600; color: var(--gray); }
+.stat-card .value { font-size: 36px; font-weight: 800; color: var(--maroon); margin-top: 8px; }
+
+/* Table */
+.table-wrap { overflow-x: auto; border-radius: var(--radius); background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 16px; text-align: left; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+th { background: #F9FAFB; font-weight: 600; color: var(--gray); text-transform: uppercase; font-size: 12px; }
+tbody tr:hover { background: #F8FAFC; }
+
+.btn-sm { padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; margin-right: 4px; }
+.btn-accept { background: var(--green); color: #fff; }
+.btn-reject { background: var(--red); color: #fff; }
+.btn-view { background: #E5E7EB; color: var(--text); }
+
+.empty-state { text-align: center; padding: 60px 20px; color: var(--gray); grid-column: 1 / -1; }
+.empty-state .icon { font-size: 64px; margin-bottom: 16px; }
+
+/* Footer */
+footer { background: var(--maroon); color: rgba(255,255,255,0.8); padding: 60px 24px; border-top: 4px solid var(--maroon-light); }
+.footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+footer h4 { color: #fff; font-size: 18px; margin-bottom: 16px; }
+footer p, footer a { font-size: 14px; color: rgba(255,255,255,0.7); display: block; margin-bottom: 8px; }
+footer a:hover { color: var(--secondary); }
+
+/* Form */
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 14px 16px; border: 1.5px solid #E5E7EB; border-radius: 12px;
+  font-size: 15px; font-family: inherit; background: rgba(255, 255, 255, 0.9); transition: 0.3s;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--maroon); outline: none; box-shadow: 0 0 0 4px rgba(74, 14, 23, 0.1); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .login-wrapper { flex-direction: column; height: auto; }
+  .login-image { display: none; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+}
